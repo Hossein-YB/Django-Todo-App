@@ -28,11 +28,8 @@ class CreateTaskView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy("task_list")
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super(CreateTaskView, self).form_valid(form)
-
-        # new_task = form.save(commit=False)
-        # if self.request.user.is_authenticated:
-        #     new_task.user = self.request.user
-        #     new_task.save()
-        #     return super().form_valid(form)
+        new_task = form.save(commit=False)
+        if self.request.user.is_authenticated:
+            new_task.user = self.request.user
+            new_task.save()
+            return super().form_valid(form)
