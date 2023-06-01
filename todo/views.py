@@ -58,10 +58,10 @@ class DeleteTaskView(DeleteView):
         return self.post(request, *args, **kwargs)
 
 
-# class TaskUpdate(LoginRequiredMixin, UpdateView):
-#     model = Task
-#     success_url = reverse_lazy("task_list")
-#     form_class = TaskUpdateForm
-#     template_name = "todo/update_task.html"
+class UpdateTaskView(LoginRequiredMixin, UpdateView):
+    model = Task
+    success_url = reverse_lazy("task_list")
+    form_class = CreatTaskForm
+    template_name = "todo/task_form.html"
 
 
