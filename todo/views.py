@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DeleteView
 
 from todo.forms import CreatTaskForm
 from todo.models import Task
@@ -37,3 +37,11 @@ class CreateTaskView(LoginRequiredMixin, CreateView):
 
     def form_invalid(self, form):
         return redirect("task_list")
+
+
+class DeleteTaskView(DeleteView):
+    model = Task
+    success_url = reverse_lazy("task_list")
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
