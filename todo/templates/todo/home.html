@@ -4,39 +4,73 @@
     خانه | لیست کار ها
 {% endblock %}
 
+{% block add-style %}
+         <style>
+        div.custom-card {
+            border: none!important;
+            margin: 5rem;
+        }
+
+        form.add-form {
+            border: 1px solid black;
+        }
+
+        div.custom-card-body {
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        div.custom-card-task {
+            border: none;
+            margin: 9px;
+            border-bottom: solid 1px black;
+            border-radius: 0%;
+        }
+    </style>
+{% endblock %}
+
 
 {% block content %}
     <div class="container">
         <div class="row d-flex justify-content-center m-5">
-            <div class="col-sm-6 d-flex justify-content-center">
-                <div class="card" style="width: 25rem;">
-                    <form class="p-3 border-bottom" action="{% url 'task_create' %}" method="post">
+            <div class="col-sm-6 justify-content-center">
+                <div class="card custom-card bg-light" style="width: 25rem;">
+                    <form class="p-3 add-form" action="{% url 'task_create' %}" method="post">
                         {% csrf_token %}
+                        <h5 class="text-center">create task</h5>
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Task Title</label>
+                            <label for="exampleFormControlInput1">Task Title: </label>
                             <input type="text" name="task" class="form-control" id="exampleFormControlInput1">
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Task description</label>
-                            <textarea class="form-control" name="task_description" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <label for="exampleFormControlTextarea1">Task description: </label>
+                            <textarea class="form-control" name="task_description" id="exampleFormControlTextarea1"
+                                      rows="3"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">save task</button>
+                        <button type="submit" class="form-control w-100 btn btn-primary">save task</button>
                     </form>
                 </div>
 
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 d-flex">
                 <div>
-                    <h1>tasks</h1>
+                    <h1 class="">Tasks</h1>
                     {% for task in object_list %}
-                        <p>{{ task.task }}</p>
+                        <div class="card custom-card-task">
+                            <div class="card-body custom-card-body">
+                                <h5 class="card-title">{{ task.task }}</h5>
+                                <p class="card-text">{{ task.task_description }}</p>
+                                <a href="#" class="btn btn-success">Down</a>
+                                <a href="#" class="btn btn-primary">Update</a>
+                                <a href="#" class="btn btn-danger">Delete</a>
+                            </div>
+                        </div>
                     {% endfor %}
                 </div>
             </div>
         </div>
     </div>
 {% endblock %}
-
 
 
 
