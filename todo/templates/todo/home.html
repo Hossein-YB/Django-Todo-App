@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block add-style %}
-         <style>
+    <style>
         div.custom-card {
-            border: none!important;
+            border: none !important;
             margin: 5rem;
         }
 
@@ -56,15 +56,27 @@
                 <div>
                     <h1 class="">Tasks</h1>
                     {% for task in object_list %}
-                        <div class="card custom-card-task">
-                            <div class="card-body custom-card-body">
-                                <h5 class="card-title">{{ task.task }}</h5>
-                                <p class="card-text">{{ task.task_description }}</p>
-                                <a href="#" class="btn btn-success">Down</a>
-                                <a href="#" class="btn btn-primary">Update</a>
-                                <a href="{% url 'task_delete' task.id %}" class="btn btn-danger">Delete</a>
+                        {% if task.is_done == True %}
+                            <div class="card custom-card-task">
+                                <div class="card-body custom-card-body">
+                                    <h5 class="card-title"><strike> {{ task.task }}</strike></h5>
+                                    <p class="card-text"><strike> {{ task.task_description }}</strike></p>
+                                    {# <a href="{% url 'task_down' task.id %}" class="btn btn-success">Down</a>#}
+                                    {# <a href="" class="btn btn-primary">Update</a>#}
+                                    <a href="{% url 'task_delete' task.id %}" class="btn btn-danger">Delete</a>
+                                </div>
                             </div>
-                        </div>
+                        {% else %}
+                            <div class="card custom-card-task">
+                                <div class="card-body custom-card-body">
+                                    <h5 class="card-title">{{ task.task }}</h5>
+                                    <p class="card-text">{{ task.task_description }}</p>
+                                    <a href="{% url 'task_down' task.id %}" class="btn btn-success">Down</a>
+                                    <a href="" class="btn btn-primary">Update</a>
+                                    <a href="{% url 'task_delete' task.id %}" class="btn btn-danger">Delete</a>
+                                </div>
+                            </div>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>

@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DeleteView
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 
 from todo.forms import CreatTaskForm
 from todo.models import Task
@@ -39,9 +39,29 @@ class CreateTaskView(LoginRequiredMixin, CreateView):
         return redirect("task_list")
 
 
+class DownTaskView(LoginRequiredMixin, UpdateView):
+    model = Task
+    success_url = reverse_lazy("task_list")
+
+    def get(self, request, *args, **kwargs):
+        task_id = kwargs.get("pk")
+        task = Task.objects.get(id=task_id)
+        task.change_status_down()
+        return redirect("task_list")
+
+
 class DeleteTaskView(DeleteView):
     model = Task
     success_url = reverse_lazy("task_list")
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
+
+
+# class TaskUpdate(LoginRequiredMixin, UpdateView):
+#     model = Task
+#     success_url = reverse_lazy("task_list")
+#     form_class = TaskUpdateForm
+#     template_name = "todo/update_task.html"
+
+
