@@ -1,0 +1,26 @@
+{% extends "_base.html" %}
+
+{% block page-title %}
+    Login page
+{% endblock %}
+
+{% block content %}
+    <h1>Login View</h1>
+<div class="bg-light container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <form class="p-3 add-form d-flex flex-column" action="{% url 'login' %}" method="post">
+                        {% csrf_token %}
+                        {{ form }}
+                        <button type="submit" class="form-control w-100 btn btn-primary">save task</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
