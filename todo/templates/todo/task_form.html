@@ -11,7 +11,7 @@
         <div class="row d-flex justify-content-center m-5">
             <div class="col-sm-6 d-flex justify-content-center">
                 <div class="card custom-card bg-light" style="width: 25rem;">
-                    <form class="p-3 add-form d-flex flex-column" action="{% url 'task_create' %}" method="post">
+                    <form class="p-3 add-form d-flex flex-column" action="{% url 'task_update' task.id %}" method="post">
                         {% csrf_token %}
                         {{ form }}
                         <button type="submit" class="form-control w-100 btn btn-primary">save task</button>

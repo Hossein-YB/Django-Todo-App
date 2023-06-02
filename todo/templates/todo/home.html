@@ -54,7 +54,7 @@
             </div>
             <div class="col-sm-6 d-flex">
                 <div>
-                    <h1 class="">Tasks</h1>
+                    <p style="font-size: 18px">hello <b>{{ user.username }} </b>welcome, <a href="{% url 'logout' %}">logout</a> from your account</p>
                     {% for task in object_list %}
                         {% if task.is_done == True %}
                             <div class="card custom-card-task">
