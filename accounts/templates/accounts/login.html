@@ -12,14 +12,15 @@
             <div class="container">
                 <div class="row d-flex justify-content-center">
                     <div class="col-sm-5 bg-light m-5 p-5">
+                        <h4 class="m-2 text-center">Login to your account</h4>
                         <form class="p-3 add-form d-flex flex-column" action="{% url 'login' %}" method="post">
                         {% csrf_token %}
                         {{ form|crispy }}
-                        <button type="submit" class=" m-2 form-control w-100 btn btn-primary">login</button>
+                        <button type="submit" class=" my-2 form-control w-100 btn btn-primary">login</button>
                     </form>
                         <div>
                             <p>
-                               not have account?  <span><a href="{% url 'signup' %}">Signup</a></span>
+                               If you don't have an account? <span style="font-size: 18px;"><a href="{% url 'signup' %}">Signup</a></span>
                             </p>
                         </div>
                     </div>
