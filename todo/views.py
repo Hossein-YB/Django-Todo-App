@@ -24,7 +24,8 @@ class TaskListView(LoginRequiredMixin, ListView):
 
 class CreateTaskView(LoginRequiredMixin, CreateView):
     model = Task
-    fields = ('task', 'task_description')
+    form_class = CreatTaskForm
+    # fields = ('task', 'task_description')
     template_name = "todo/home.html"
     success_url = reverse_lazy("task_list")
 
