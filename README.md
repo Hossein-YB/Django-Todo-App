@@ -56,26 +56,26 @@ python -m venv venv
 ```
 Start docker, and go project directory in terminal after that run this command
 ```bash
-docker-compose.yml up --build
+docker-compose up --build
 ```
 
 
 Wait for the project to run,after run go to the cloned repo  directory make new terminal and run the following command
 ```bash
-docker-compose.yml exec todo sh -c "python manage.py makemigrations"
+docker-compose exec todo sh -c "python manage.py makemigrations"
 ```
 
 This will create all the migrations file (database migrations) required to run this App.
 
 Now, to apply this migrations run the following command
 ```bash
-docker-compose.yml exec todo sh -c "python manage.py migrate"
+docker-compose exec todo sh -c "python manage.py migrate"
 ```
 
 ### options
 Project it self has the user creation form but still in order to use the admin you need to create a super user.you can use the createsuperuser option to make a super user.
 ```bash
-docker-compose.yml exec todo sh -c "python manage.py createsuperuser"
+docker-compose exec todo sh -c "python manage.py createsuperuser"
 ```
 
 can start using our simple todo App, head over to http://127.0.0.1:8000 for the App.
