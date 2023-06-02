@@ -46,7 +46,7 @@ these commands for PowerShell if you want.
 ### Setup
 To get this repository, run the following command inside your git enabled terminal
 ```bash
-git clone https://github.com/Hossein-YB/Django-todo-app
+git clone https://github.com/Hossein-YB/Django-Todo-App
 ```
 
 ### Getting ready
