@@ -5,7 +5,7 @@ from django.db import models
 class Task(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,
                              related_name="tasks")
-    task = models.CharField(max_length=500)
+    task = models.CharField(max_length=500, verbose_name="Task name")
     task_description = models.TextField(blank=True)
     is_done = models.BooleanField(default=False)
 

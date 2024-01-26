@@ -24,7 +24,8 @@
             border: none;
             margin: 9px;
             border-bottom: solid 1px black;
-            border-radius: 0%;
+            border-top: solid 1px black;
+            border-radius: 15px;
         }
     </style>
 {% endblock %}
@@ -32,10 +33,10 @@
 
 {% block content %}
     <div class="container">
-        <div class="row d-flex justify-content-center m-5">
-            <div class="col-sm-6 justify-content-center">
-                <div class="card custom-card bg-light" style="width: 25rem;">
-                    <form class="p-3 add-form" action="{% url 'task_create' %}" method="post">
+        <div class="row">
+            <div class="col-sm-12 col-lg-6 d-flex justify-content-center">
+                <div class="card custom-card " style="width: 25rem;">
+                    <form class="p-3 add-form bg-light" action="{% url 'task_create' %}" method="post">
                         {% csrf_token %}
                         <h5 class="text-center">create task</h5>
                         <div class="form-group">
@@ -50,30 +51,36 @@
                         <button type="submit" class="form-control w-100 btn btn-primary">save task</button>
                     </form>
                 </div>
-
             </div>
-            <div class="col-sm-6 d-flex">
-                <div>
-                    <p style="font-size: 18px">hello <b>{{ user.username }} </b>welcome, <a href="{% url 'logout' %}">logout</a> from your account</p>
+            <div class="col-sm-12 col-lg-6 d-flex justify-content-center">
+                <div class="my-sm-2 my-lg-5 mx-sm-2">
+                    <div class=" bg-warning">
+                        <h1 class="w-100 p-3" style="font-size: 18px;">hello <b>{{ user.username }} </b>welcome, <a
+                                href="{% url 'logout' %}">logout</a> from your account</h1>
+                    </div>
                     {% for task in object_list %}
                         {% if task.is_done == True %}
-                            <div class="card custom-card-task">
+                            <div class="card custom-card-task my-3" style="background-color: #5cec7d !important;">
                                 <div class="card-body custom-card-body">
-                                    <h5 class="card-title"><strike> {{ task.task }}</strike></h5>
-                                    <p class="card-text"><strike> {{ task.task_description }}</strike></p>
-                                    {# <a href="{% url 'task_down' task.id %}" class="btn btn-success">Down</a>#}
-                                    {# <a href="" class="btn btn-primary">Update</a>#}
-                                    <a href="{% url 'task_delete' task.id %}" class="btn btn-danger">Delete</a>
+                                    <h3 class="card-title text-center">{{ task.task }}</h3>
+                                    <p class="card-text p-3">{{ task.task_description }}</p>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="{% url 'task_delete' task.id %}" class="btn btn-danger">Delete</a>
+                                    </div>
                                 </div>
                             </div>
                         {% else %}
-                            <div class="card custom-card-task">
+                            <div class="card bg-light custom-card-task my-3">
                                 <div class="card-body custom-card-body">
-                                    <h5 class="card-title">{{ task.task }}</h5>
-                                    <p class="card-text">{{ task.task_description }}</p>
-                                    <a href="{% url 'task_down' task.id %}" class="btn btn-success">Down</a>
-                                    <a href="{% url 'task_update' task.id %}" class="btn btn-primary">Update</a>
-                                    <a href="{% url 'task_delete' task.id %}" class="btn btn-danger">Delete</a>
+                                    <h3 class="card-title text-center">{{ task.task }}</h3>
+                                    <p class="card-text p-3">{{ task.task_description }}</p>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="{% url 'task_down' task.id %}"
+                                           class="btn btn-success p-2 mx-1">Down</a>
+                                        <a href="{% url 'task_update' task.id %}" class="btn btn-primary p-2 mx-1">Update</a>
+                                        <a href="{% url 'task_delete' task.id %}"
+                                           class="btn btn-danger p-2 mx-1">Delete</a>
+                                    </div>
                                 </div>
                             </div>
                         {% endif %}
